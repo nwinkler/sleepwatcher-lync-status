@@ -63,7 +63,7 @@ function _lync-store-status() {
 
             log menuItemName
 
-            do shell script "echo " & quoted form of menuItemName & " > $TMPDIR/sleepwatcher-lync-status.txt"
+            do shell script "echo " & quoted form of menuItemName & " > $STATUSFILE"
 
             exit repeat
           end if
