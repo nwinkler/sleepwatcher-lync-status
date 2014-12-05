@@ -12,7 +12,7 @@ function _lync-status() {
     activate
   end tell
 
-  -- Set your status to 'Available'
+  -- Set your status to the provided parameter
   tell application "System Events"
     tell process "Microsoft Lync"
       tell menu bar 1
@@ -22,6 +22,51 @@ function _lync-status() {
           end tell
         end tell
       end tell
+    end tell
+  end tell
+
+  -- Return to your previous application
+  tell application currentApp
+    activate
+  end tell
+EOF
+}
+
+function _lync-store-status() {
+  osascript 2>/dev/null <<EOF
+  -- Save your current application
+  tell application "System Events"
+    set currentApp to name of 1st process whose frontmost is true
+  end tell
+
+  -- Bring Lync to the front so we can use the menu
+  tell application "Microsoft Lync"
+    activate
+  end tell
+
+  -- Store the status
+  tell application "System Events"
+    tell process "Microsoft Lync"
+      set statusMenu to menu bar item "Status" of menu bar 1
+      set allUiElements to entire contents of statusMenu
+
+      repeat with anElement in allUiElements
+        try
+          set checked to value of attribute "AXMenuItemMarkChar" of anElement
+
+          if checked is "✓" then
+            log checked
+
+            set menuItemName to name of anElement
+
+            log menuItemName
+
+            do shell script "echo " & quoted form of menuItemName & " > $TMPDIR/sleepwatcher-lync-status.txt"
+
+            exit repeat
+          end if
+        end try
+      end repeat
     end tell
   end tell
 
