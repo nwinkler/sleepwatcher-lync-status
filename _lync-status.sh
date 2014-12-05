@@ -1,5 +1,7 @@
 #!/bin/bash
 
+STATUSFILE=$TMPDIR/sleepwatcher-lync-status.txt
+
 function _lync-status() {
   osascript 2>/dev/null <<EOF
   -- Save your current application
@@ -75,4 +77,16 @@ function _lync-store-status() {
     activate
   end tell
 EOF
+}
+
+function _lync-restore-status() {
+  local status="Reset Status"
+
+  if [ -f "$STATUSFILE" ]; then
+    status=$(cat $STATUSFILE)
+
+    rm $STATUSFILE
+  fi
+
+  _lync-status "$status"
 }
