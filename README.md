@@ -9,8 +9,8 @@ Tested on Mac OS X 10.10.1 and Microsoft Lync 2011 (14.0.10).
 
 The provided default configuration does the following:
 
-* When your screen is locked (and/or goes to sleep), it sets your Lync status to _Appear Away_.
-* When your screen is unlocked (or wakes up from sleep), it resets your Lync status.
+* When your screen is locked (and/or goes to sleep), it stores your current Lync status and then sets it to _Appear Away_.
+* When your screen is unlocked (or wakes up from sleep), it restores your Lync status to your previous status.
 
 Please note that this only works if you set your system to put your screen to sleep when the system is locked. I use the `Ctrl+Shift+Eject` keyboard combo to lock the screen. Please open an issue here on Github if you are running into any problems with this.
 
@@ -60,7 +60,11 @@ cd sleepwatcher-lync-status
 
 ## To Do
 
-* When locking the screen, store the current Lync status, and restore it when the screen is unlocked/waking up again.
+* _N/A_
+
+## Contributing
+
+This project uses [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/), any changes or pull requests need to be made against the _develop_ branch.
 
 ## References
 
