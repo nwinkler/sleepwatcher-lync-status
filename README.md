@@ -62,6 +62,10 @@ cd sleepwatcher-lync-status
 
 * _N/A_
 
+## Known Issues
+
+* The menu integration can fail on installations of OS X that don't use English language. There are some hardcoded values in the code referencing the menu entries.
+
 ## Contributing
 
 This project uses [Git-Flow](http://nvie.com/posts/a-successful-git-branching-model/), any changes or pull requests need to be made against the _develop_ branch.
