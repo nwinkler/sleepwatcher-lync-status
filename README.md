@@ -1,6 +1,8 @@
 sleepwatcher-lync-status
 =====================
 
+Version: 0.0.1
+
 Automatically changes the Microsoft Lync status when the screen is locked or unlocked on Mac OS X.
 Lync does not automatically do this, which causes issues when your screen is locked, but your contacts still
 see you as available.
