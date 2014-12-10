@@ -2,6 +2,13 @@
 
 STATUSFILE=$TMPDIR/sleepwatcher-lync-status.txt
 
+function _syslog-sleepwatcher() {
+  syslog -s -k Facility \
+  -k Sender com.nilswinkler.sleepwatcher-lync-status \
+  -k Level notice \
+  -k Message "Lync Status: $1"
+}
+
 function _lync-status() {
   osascript 2>/dev/null <<EOF
   -- Save your current application
@@ -32,6 +39,8 @@ function _lync-status() {
     activate
   end tell
 EOF
+
+_syslog-sleepwatcher "$1"
 }
 
 function _lync-store-status() {
